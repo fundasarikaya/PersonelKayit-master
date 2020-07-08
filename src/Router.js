@@ -6,14 +6,18 @@ import EmployeeList from './components/EmployeeList';
 const RouterComponent = () => {
   return (
     <Router sceneStyle={{marginTop: 65}}>
-      <Scene key="kimlik">
-        <Scene key="loginScreen" component={LoginForm} title="Giris Ekrani" />
+      <Scene key="main">
         <Scene
+          onRight={() => console.log('tıklandı')}
+          rightTitle="Yeni"
           key="employeeList"
           component={EmployeeList}
           title="Personel Listesi"
           //initial //initial dersek ilk bu sahneyi gösterir
         />
+      </Scene>
+      <Scene key="kimlik">
+        <Scene key="loginScreen" component={LoginForm} title="Giris Ekrani" />
       </Scene>
     </Router>
   );
