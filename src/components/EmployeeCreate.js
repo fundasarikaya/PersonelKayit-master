@@ -74,7 +74,19 @@ const styles = {
     flex: 2,
   },
 };
+
+const mapToStateProps = ({employeeListResponse}) => {
+  const {isim, soyisim, tc, departman} = employeeListResponse;
+
+  return {
+    isim,
+    soyisim,
+    tc,
+    departman,
+  };
+};
+
 export default connect(
-  null,
-  employeeChange,
+  mapToStateProps,
+  {employeeChange},
 )(EmployeeCreate);
