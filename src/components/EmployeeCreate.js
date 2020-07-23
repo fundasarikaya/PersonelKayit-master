@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, TextInput} from 'react-native';
+import {View, Text, TextInput, Picker} from 'react-native';
 import {Button, Card, CardSection} from '../common';
 
 class EmployeeCreate extends Component {
@@ -35,7 +35,17 @@ class EmployeeCreate extends Component {
           />
         </CardSection>
 
-        <CardSection />
+        <CardSection>
+          <Text>Departman</Text>
+          <Picker
+            style={{flex: 1}}
+            selectedValue={this.props.departman}
+            onValueChange={departman => this.props.employeeChange(departman)}>
+            <Picker.Item label="Bilişim" value="bilisim" />
+            <Picker.Item label="Muhasebe" value="muhasebe" />
+            <Picker.Item label="Satın alma" value="satinalma" />
+          </Picker>
+        </CardSection>
 
         <CardSection>
           <Button onPress={this.clickSave.bind(this)}> Kaydet </Button>
