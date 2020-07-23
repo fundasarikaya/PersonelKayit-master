@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {View, Text, TextInput, Picker} from 'react-native';
+import {connect} from 'react-redux';
 import {Button, Card, CardSection} from '../common';
+import {employeeChange} from '../actions';
 
 class EmployeeCreate extends Component {
   clickSave() {}
@@ -13,7 +15,9 @@ class EmployeeCreate extends Component {
             placeholder="İsim"
             style={inputStyle}
             value={this.props.isim}
-            onChangeText={isim => this.props.employeeChange(isim)}
+            onChangeText={isim =>
+              this.props.employeeChange({props: 'isim', value: isim})
+            }
           />
         </CardSection>
 
@@ -22,7 +26,9 @@ class EmployeeCreate extends Component {
             placeholder="Soyisim"
             style={inputStyle}
             value={this.props.soyisim}
-            onChangeText={soyisim => this.props.employeeChange(soyisim)}
+            onChangeText={soyisim =>
+              this.props.employeeChange({props: 'soyisim', value: soyisim})
+            }
           />
         </CardSection>
 
@@ -31,7 +37,9 @@ class EmployeeCreate extends Component {
             placeholder="TC Kimlik Numarası"
             style={inputStyle}
             value={this.props.tc}
-            onChangeText={tc => this.props.employeeChange(tc)}
+            onChangeText={tc =>
+              this.props.employeeChange({props: 'tc', value: tc})
+            }
           />
         </CardSection>
 
@@ -40,7 +48,9 @@ class EmployeeCreate extends Component {
           <Picker
             style={{flex: 1}}
             selectedValue={this.props.departman}
-            onValueChange={departman => this.props.employeeChange(departman)}>
+            onValueChange={departman =>
+              this.props.employeeChange({props: 'departman', value: departman})
+            }>
             <Picker.Item label="Bilişim" value="bilisim" />
             <Picker.Item label="Muhasebe" value="muhasebe" />
             <Picker.Item label="Satın alma" value="satinalma" />
@@ -64,4 +74,7 @@ const styles = {
     flex: 2,
   },
 };
-export default EmployeeCreate;
+export default connect(
+  null,
+  employeeChange,
+)(EmployeeCreate);
