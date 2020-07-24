@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React, {Component} from 'react';
-import {View, Text, ListView} from 'react-native';
+import {View, Text} from 'react-native';
+import ListView from 'deprecated-react-native-listview';
 import {connect} from 'react-redux';
 import {employeesListData} from '../actions';
 
@@ -17,6 +18,7 @@ class EmployeeList extends Component {
     this.datasource = datasource.cloneWithRows(nextProps.employeesArray);
   }
   render() {
+    console.log(this.props.employeesArray);
     return (
       <View>
         <Text>Employee List</Text>
@@ -29,7 +31,7 @@ class EmployeeList extends Component {
 }
 
 const mapStateToProps = ({employeeDataResponse}) => {
-  const employeesArray = _.map(employeeDataResponse.data, (val, uid) => {
+  const employeesArray = _.map(employeeDataResponse, (val, uid) => {
     return {...val, uid}; //{isim:'Funda',soyisim:'Sari',tc:'123',departman:'bilisim',uid:'sdjf'} seklinde dataları alırız
   });
   return {employeesArray};
