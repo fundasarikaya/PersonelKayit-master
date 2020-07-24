@@ -28,12 +28,16 @@ class EmployeeList extends Component {
   }
 }
 
-const mapStateToProps = ({employeeDataResponse}) => {};
+const mapStateToProps = ({employeeDataResponse}) => {
+  const employeesArray = _.map(employeeDataResponse.data, (val, uid) => {
+    return {...val, uid}; //{isim:'Funda',soyisim:'Sari',tc:'123',departman:'bilisim',uid:'sdjf'} seklinde dataları alırız
+  });
+  return {employeesArray};
+};
 
 export default connect(
   mapStateToProps,
   {employeesListData},
 )(EmployeeList);
-
 
 //npm install -save lodash ile gelen objeleri array icerisine id ile eklememizi saglar
