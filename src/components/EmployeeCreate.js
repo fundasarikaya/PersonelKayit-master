@@ -1,19 +1,20 @@
 import React, {Component} from 'react';
 import {View, Text, TextInput, Picker} from 'react-native';
 import {connect} from 'react-redux';
-import {Button, Card, CardSection} from '../common';
-import {employeeChange} from '../actions';
+import {Button, Card, CardSection, Spinner} from '../common';
+import {employeeChange, employeeCreate} from '../actions';
 
 class EmployeeCreate extends Component {
   clickSave() {
-    const{
-      isim,
-      soyisim,
-      tc,
-      departman
-    }=this.props;
+    const {isim, soyisim, tc, departman} = this.props;
+
+    this.props.employeeCreate({isim, soyisim, tc, departman});
+  }
+  renderButton() {
+    if (!this.props.loading) {
+      return <Button onPress={this.clickSave.bind(this)}> Kaydet </Button>;
     }
-    this.props.employeeCreate({isim,soyisim,tc,departman});
+    return <Spinner size="small" />;
   }
   render() {
     const {inputStyle} = styles;
@@ -66,9 +67,7 @@ class EmployeeCreate extends Component {
           </Picker>
         </CardSection>
 
-        <CardSection>
-          <Button onPress={this.clickSave.bind(this)}> Kaydet </Button>
-        </CardSection>
+        <CardSection>{this.renderButton()}</CardSection>
       </Card>
     );
   }
@@ -85,17 +84,18 @@ const styles = {
 };
 
 const mapToStateProps = ({employeeListResponse}) => {
-  const {isim, soyisim, tc, departman} = employeeListResponse;
+  const {isim, soyisim, tc, departman, loading} = employeeListResponse;
 
   return {
     isim,
     soyisim,
     tc,
     departman,
+    loading,
   };
 };
 
 export default connect(
   mapToStateProps,
-  {employeeChange,employeeCreate},
+  {employeeChange, employeeCreate},
 )(EmployeeCreate);

@@ -1,4 +1,8 @@
-import {EMPLOYEE_CHANGED} from '../actions/types';
+import {
+  EMPLOYEE_CHANGED,
+  CREATE_REQUEST,
+  CREATE_REQUEST_SUCCESS,
+} from '../actions/types';
 const INITIAL_STATE = {
   isim: '',
   soyisim: '',
@@ -13,6 +17,10 @@ export default (state = INITIAL_STATE, action) => {
     //actiondaki  payload: {props, value}, kısmında props ve value gondeririz
     //gelen props ornegin soyisim bilgisisini kullanıcının girdigi soyisim bilgisi ile eşleştiririz
     //bu sekilde reducersımızı gondermiş oluruz
+    case CREATE_REQUEST:
+      return {...state, loading: true};
+    case CREATE_REQUEST_SUCCESS:
+      return {...state, loading: false};
     default:
       return state;
   }
