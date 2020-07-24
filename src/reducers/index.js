@@ -6,5 +6,5 @@ import EmployeeDataReducer from './EmployeeDataReducer';
 export default combineReducers({
   AuthenticationResponse: AuthenticationReducers, //Buraya AuthenticationReducers dan gelen degeri response olarak alırız.
   employeeListResponse: EmployeeListReducer,
-  EmployeeDataReducer: EmployeeDataReducer,
+  EmployeeDataResponse: EmployeeDataReducer,
 });

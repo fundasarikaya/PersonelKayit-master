@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, ListView} from 'react-native';
 import {connect} from 'react-redux';
 import {employeesListData} from '../actions';
 
@@ -19,7 +19,9 @@ class EmployeeList extends Component {
   }
 }
 
+const mapStateToProps = ({employeeDataResponse}) => {};
+
 export default connect(
-  null,
+  mapStateToProps,
   {employeesListData},
 )(EmployeeList);
