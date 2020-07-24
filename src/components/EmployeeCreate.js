@@ -5,7 +5,16 @@ import {Button, Card, CardSection} from '../common';
 import {employeeChange} from '../actions';
 
 class EmployeeCreate extends Component {
-  clickSave() {}
+  clickSave() {
+    const{
+      isim,
+      soyisim,
+      tc,
+      departman
+    }=this.props;
+    }
+    this.props.employeeCreate({isim,soyisim,tc,departman});
+  }
   render() {
     const {inputStyle} = styles;
     return (
@@ -88,5 +97,5 @@ const mapToStateProps = ({employeeListResponse}) => {
 
 export default connect(
   mapToStateProps,
-  {employeeChange},
+  {employeeChange,employeeCreate},
 )(EmployeeCreate);
