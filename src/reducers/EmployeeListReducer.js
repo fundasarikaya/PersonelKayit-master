@@ -20,7 +20,7 @@ export default (state = INITIAL_STATE, action) => {
     case CREATE_REQUEST:
       return {...state, loading: true};
     case CREATE_REQUEST_SUCCESS:
-      return {...state, loading: false};
+      return {INITIAL_STATE}; //başlangıc durumuna gecirir kayıt ekledikten sonra listeye dondukten sorna form boşaltılması icin
     default:
       return state;
   }

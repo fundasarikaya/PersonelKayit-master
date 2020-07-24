@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+import {Actions} from 'react-native-router-flux';
 import {
   EMPLOYEE_CHANGED,
   CREATE_REQUEST,
@@ -25,6 +26,7 @@ export const employeeCreate = ({isim, soyisim, tc, departman}) => {
       .push({isim, soyisim, tc, departman})
       .then(() => {
         dispatch({type: CREATE_REQUEST_SUCCESS});
+        Actions.pop(); //bir onceki sayfaya yonlendirir
       });
   };
 };
