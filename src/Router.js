@@ -7,6 +7,10 @@ import EmployeeCreate from './components/EmployeeCreate';
 const RouterComponent = () => {
   return (
     <Router sceneStyle={{marginTop: 65}}>
+      <Scene key="kimlik">
+        <Scene key="loginScreen" component={LoginForm} title="Giris Ekrani" />
+      </Scene>
+
       <Scene key="main">
         <Scene
           onRight={() => Actions.employeeCreate()}
@@ -22,10 +26,6 @@ const RouterComponent = () => {
           component={EmployeeCreate}
           title="Personel Kayıt"
         />
-      </Scene>
-
-      <Scene key="kimlik">
-        <Scene key="loginScreen" component={LoginForm} title="Giris Ekrani" />
       </Scene>
     </Router>
   );

@@ -9,7 +9,7 @@ class EmployeeCreate extends Component {
   render() {
     const {inputStyle} = styles;
     return (
-      <View>
+      <Card>
         <CardSection>
           <TextInput
             placeholder="İsim"
@@ -60,7 +60,7 @@ class EmployeeCreate extends Component {
         <CardSection>
           <Button onPress={this.clickSave.bind(this)}> Kaydet </Button>
         </CardSection>
-      </View>
+      </Card>
     );
   }
 }

@@ -79,8 +79,8 @@ const styles = {
 const mapStateToProps = ({AuthenticationResponse}) => {
   const {email, password, loading} = AuthenticationResponse;
   return {
-    email,
-    password,
+    email: 'funda@test.com',
+    password: '123456',
     loading,
   };
 };
