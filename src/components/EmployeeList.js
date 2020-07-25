@@ -1,31 +1,25 @@
 import _ from 'lodash';
 import React, {Component} from 'react';
-import {View, Text} from 'react-native';
-import ListView from 'deprecated-react-native-listview';
+import {View, Text, FlatList} from 'react-native';
 import {connect} from 'react-redux';
 import {employeesListData} from '../actions';
+import ListItem from './ListItem';
 
 class EmployeeList extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.employeesListData();
   }
-
-  //propertyler componente ulaştığı zaman componentWillReciveProps
-  componentWillReceiveProps(nextProps) {
-    const datasource = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2,
-    });
-    this.datasource = datasource.cloneWithRows(nextProps.employeesArray);
+  renderRow({item, index}) {
+    return <ListItem employee={item} />;
   }
   render() {
     console.log(this.props.employeesArray);
     return (
-      <View>
-        <Text>Employee List</Text>
-        <Text>Employee List</Text>
-        <Text>Employee List</Text>
-        <Text>Employee List</Text>
-      </View>
+      <FlatList
+        data={this.props.employeesArray}
+        renderItem={this.renderRow}
+        keyExtractor={(item, index) => index.toString()}
+      />
     );
   }
 }
@@ -43,3 +37,4 @@ export default connect(
 )(EmployeeList);
 
 //npm install -save lodash ile gelen objeleri array icerisine id ile eklememizi saglar
+//Removed ListView in ReactNative import ListView from 'deprecated-react-native-listview';
